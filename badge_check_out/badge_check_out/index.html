@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="scripts/sytle.css">
+    <meta charset="UTF-8">
+    <title>Security Badge Check Out Website</title>
+
+</head>
+<body>
+    <h1>Badge Check Out</h1>
+    <div>
+        <label>Name:</label> <input id="nameTyped" type="text">
+        <br><br>
+        <label>Badge Type:</label> <input id="badgeTyped" type="text">
+        <br><br>
+        <label>Badge Number:</label> <input id="badgeNumTyped" type="text">
+    <br><br>
+        <button id="checkIn">Click to Check In!</button>
+    </div>
+    
+    
+    <div>
+            <table id="checkedIn" style="width:100%" border:1>
+              <tr>
+                <th>Name</th>
+                <th>Badge Type</th> 
+                <th>Badge Number</th>
+                <th>Time Checked Out</th>
+                <th>Return</th>
+              </tr>
+            </table>
+ <!--           
+              <table id="checkedIn" style="width:100%" border:1>
+              <tr>
+                <td>Tom Test</td>
+                <td>Temporary</td> 
+                <td>50</td>
+                <td>17:05:01</td>
+                <td><input type="button" id="return1" value="Click to Return Badge"></td>
+              </tr>
+            </table>
+-->
+    </div>
+</body>
+    <script src="scripts/script.js"></script>
+</html>

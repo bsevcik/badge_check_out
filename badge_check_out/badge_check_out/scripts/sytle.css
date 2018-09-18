@@ -1,0 +1,37 @@
+th {
+    text-align: left;
+}
+td {
+    text-align: left:
+}
+
+h1 {
+    width: 100%;
+    margin-left: 40px;
+}
+
+#nameTyped {
+    align-content: center;
+}
+
+label{
+    display: inline-block;
+    float: left;
+    clear: left;
+    width: 110px;
+    text-align: right;
+}
+input {
+    display: inline-block;
+    float: left;
+    widt: 100px;
+}
+
+#checkIn {
+    display: inline-grid;
+    float: left;
+    clear: left;
+    text-align: center;
+    width: 173px;
+    margin-left: 110px;
+}
