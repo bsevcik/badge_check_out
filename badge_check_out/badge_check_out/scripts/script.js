@@ -44,27 +44,32 @@ window.console.log(
               </tr>
             </table>
 */
-//var time = new Date();
-//var timeNow = time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds();
+/*var time = new Date();
+var timeNow = time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds();
 var name = document.getElementById("nameTyped").value;
 var badge = document.getElementById("badgeTyped").value;
 var badgeNum = document.getElementById("badgeNumTyped").value;
 var returnButton = "</td><td><input type='button' class='return' value='Click to Return Badge'></td>";
+*/
 
+//This array is where all the data is stored. checkedInArray[0] contains the table heading row, though it is outputted as table rows
 var checkedInArray = [
     ['<strong>Name</strong>', '<strong>Badge Type</strong>', '<strong>Badge Number</strong>', '<strong>Time Checked Out</strong>', '<strong>Return</strong>']
 //    ["Array 1-0", "1-1", "1-2", "1-3", "</td><td><input type='button' class='return' value='Click to Return Badge'></td>"]
 ];
 
-
+//This function is meant to clear the table after the form is submitted. It always deletes at least one row, but doesn't always delete all rows from the table. 
 function clearTable() {
     "use strict";
-    for (var i = 0; i < document.getElementById("checkedIn").rows.length; i++) {
-        document.getElementById("checkedIn").deleteRow(0);
-    }
-}
+    for (var i = 0; i < 50; i++)
+//    for (var i = 0; i < document.getElementById("checkedIn").rows.length + 50; i++) {
+        document.getElementById("checkedIn").deleteRow(-1);
+  }
 
+//    document.getElementById("checkedIn") = "";
+//}
 
+//This function writes the entire array into an HTML table. It is reliable.
 function displayArray() {
     "use strict";
     var i = 0
@@ -73,7 +78,7 @@ function displayArray() {
     }
 }
 
-
+//This function validates that something was typed into all three input boxes and writes all the data typed in by the user to checkedInArray
 document.getElementById("checkIn").addEventListener("click",
     function () {
         "use strict";
@@ -82,13 +87,15 @@ document.getElementById("checkIn").addEventListener("click",
         if (document.getElementById("nameTyped").value === "" || document.getElementById("badgeTyped").value === "" || document.getElementById("badgeNumTyped").value === "") {
             window.alert("You need to fill out all three forms");
         } else {
-            checkedInArray.push([document.getElementById("nameTyped").value, document.getElementById("badgeTyped").value, document.getElementById("badgeNumTyped").value, timeNow, "</td><td><input type='button' class='return' value='Click to Return Badge'></td>"]);
+            checkedInArray.push([document.getElementById("nameTyped").value, document.getElementById("badgeTyped").value, document.getElementById("badgeNumTyped").value, timeNow, "<input type='button' class='return' value='Click to Return Badge'>"]);
             clearTable();
             displayArray();
-            
+
+//This part of the code simply wrote the user typed data into a table, but did not write it to an array. It is now deprecated.
 /*            document.getElementById("checkedIn").innerHTML += "<tr><td>" + name + "</td> <td>" + badge + "</td> <td>" + badgeNum + "</td><td>" + timeNow + '</td><td><input type="button" class="return" value="Click to Return Badge"></td>';
 */
-            
+
+//This clears the forms after the information is written to checkedInArray
             document.getElementById("nameTyped").value = "";
             document.getElementById("badgeTyped").value = "";
             document.getElementById("badgeNumTyped").value = "";
@@ -98,13 +105,40 @@ document.getElementById("checkIn").addEventListener("click",
                                                    );
 
 
-
-/*document.getElementsByClassName("return1").addEventListener("click",
+//This is meant to change the "click to return badge" button into a time that badge was returned. It doesn't work, and I think it's because the DOM element it refers to is not created until after the script loads.
+/* document.getElementById("return1").addEventListener("click",
     function () {
         "use strict";
-        document.getElementsByClassName("return1").value = timeNow;
+        var time = new Date();
+        var timeNow = time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds();
+        document.getElementById("return1").value = timeNow;
     }
                                                           
                                                           
                                                           );
 */
+function deleteRow(r) {
+    var i = r.parentNode.parentNode.rowIndex;
+    document.getElementById("myTable").deleteRow(i);
+}
+
+       function deleteRow() {
+//            alert("in deleteRow");
+            var table = document.getElementById(tableID);
+            var rowCount = table.rows.length;
+            for (var i = 0; i < rowCount; i++) {
+//            alert(rowCount);
+                var row = table.rows[i];
+//            alert(document.getElementById("dataTable").rows[0].innerHTML);
+                var chkbox = row.cells[1].childNodes[1];
+                if (chkbox !== null && chkbox.checked === true) {
+//            alert(chkbox);
+                    if (rowCount <= 1) { // limit the user from removing all the fields
+                        alert("Cannot Remove all the Passenger.");
+                        break;
+                    }
+                    table.deleteRow(i);
+                    rowCount--;
+                    i--;
+                }
+            }
