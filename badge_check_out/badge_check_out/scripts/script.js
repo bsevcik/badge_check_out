@@ -58,10 +58,10 @@ var checkedInArray = [
 //    ["Array 1-0", "1-1", "1-2", "1-3", "</td><td><input type='button' class='return' value='Click to Return Badge'></td>"]
 ];
 
-//This function is meant to clear the table after the form is submitted. It always deletes at least one row, but doesn't always delete all rows from the table. 
+//This function is meant to clear the table after the form is submitted. It wasn't reliable when using the table row length, so I set it to delete as many items as are in the array. The form data is pushed to the array before clearTable() is run
 function clearTable() {
     "use strict";
-    for (var i = 0; i < 50; i++)
+    for (var i = 0; i < checkedInArray.length; i++)
 //    for (var i = 0; i < document.getElementById("checkedIn").rows.length + 50; i++) {
         document.getElementById("checkedIn").deleteRow(-1);
   }
@@ -74,7 +74,7 @@ function displayArray() {
     "use strict";
     var i = 0
     for (clearTable(); i < checkedInArray.length; i++) {
-        document.getElementById("checkedIn").innerHTML += "<tr><td>" + checkedInArray[i][0] + "</td> <td>" + checkedInArray[i][1] + "</td> <td>" + checkedInArray[i][2] + "</td><td>" + checkedInArray[i][3] + "</td><td>" + checkedInArray[i][4] + "</td></tr>";
+        document.getElementById("checkedIn").innerHTML += "<tr onclick='deleteRow(this)'><td>" + checkedInArray[i][0] + "</td> <td>" + checkedInArray[i][1] + "</td> <td>" + checkedInArray[i][2] + "</td><td>" + checkedInArray[i][3] + "</td><td>" + checkedInArray[i][4] + "</td></tr>";
     }
 }
 
@@ -117,11 +117,19 @@ document.getElementById("checkIn").addEventListener("click",
                                                           
                                                           );
 */
-function deleteRow(r) {
-    var i = r.parentNode.parentNode.rowIndex;
-    document.getElementById("myTable").deleteRow(i);
-}
 
+function deleteRow(r) {
+    var i = r.rowIndex;
+    var time = new Date();
+    var timeNow = time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds();
+//    alert("You picked row " + i)
+//    document.getElementById("checkedIn").deleteRow(i);
+    checkedInArray[i][4] = timeNow
+    document.getElementById("checkedIn").rows[i].childNodes[6].innerHTML = timeNow;
+    
+    
+}
+/*
        function deleteRow() {
 //            alert("in deleteRow");
             var table = document.getElementById(tableID);
@@ -142,3 +150,4 @@ function deleteRow(r) {
                     i--;
                 }
             }
+*/
