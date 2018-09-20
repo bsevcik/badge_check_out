@@ -1,0 +1,39 @@
+h1 {
+    width: 100%;
+    margin-left: 40px;
+}
+
+label {
+    display: inline-block;
+    float: left;
+    clear: left;
+    width: 110px;
+    text-align: right;
+}
+input {
+    display: inline-block;
+    float: left;
+}
+
+#checkIn {
+    text-align: center;
+    width: 163px;
+    margin-left: 110px;
+}
+
+table {
+    width: 100%;
+}
+
+th {
+    text-align: left;
+}
+
+tr, td {
+    border: 1px solid;
+}
+
+.tableButton {
+    width: 100%;
+}
+
