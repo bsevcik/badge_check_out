@@ -78,3 +78,25 @@ document.getElementById("nameButton").addEventListener("click",
         displayArray();
     }
                                                      )
+
+
+document.getElementById("exportToCsv").addEventListener("click",
+    function () {
+        var time = new Date();
+        var dateNow = time.getMonth() + "-" + time.getDate() + "-" + time.getFullYear();    
+  var csvString = "";
+  checkedInArray.forEach(function(RowItem, RowIndex) {
+    RowItem.forEach(function(ColItem, ColIndex) {
+      csvString += ColItem + ',';
+    });
+    csvString += "\r\n";
+  });
+  csvString = "data:application/csv," + encodeURIComponent(csvString);
+ var x = document.createElement("A");
+ x.setAttribute("href", csvString );
+ x.setAttribute("download", dateNow + " Security Check Out Log.csv");
+ document.body.appendChild(x);
+ x.click();
+}
+                                                        
+                                                       );
