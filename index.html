@@ -17,7 +17,18 @@
     <br><br>
         <button id="checkIn">Click to Check In!</button>
            <div style="margin-left: 75%">
-               <button type="button" id="exportToCsv">Click to Export to .csv File</button>               
+               <button type="button" id="exportToCsv">Click to Export to .csv File</button>
+               <br><br>
+                <div class="dropdown">
+                <button onclick="myFunction()" class="dropbtn">Sort Table Contents</button>
+                <div id="myDropdown" class="dropdown-content">
+                <a id="firstNameSortClick">By First Name</a>
+                <a id="badgeTypeSortClick">By Badge Type</a>
+                <a id="badgeNumberSortClick">By Badge Number</a>
+                <a id="timeCheckedOutSortClick">By Time Checked Out</a>
+                <a id="timeReturnedSortClick">By Time Returned</a>
+                </div>
+                </div>
            </div>
     </div>
     
@@ -26,7 +37,7 @@
         <table>
             <thead>
                 <tr>
-                    <th><input type="button" id="nameButton" value="Name" class="tableButton"></th>
+                    <th>Name</th>
                     <th>Badge Type</th> 
                     <th>Badge Number</th>
                     <th>Time Checked Out</th>

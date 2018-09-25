@@ -10,8 +10,8 @@ https://chrome.google.com/webstore/detail/downloads-overwrite-alrea/lddjgfpjnifp
 Future goals:  
 
   ⋅⋅⋅*CSS3 formatting to make it look better\
-  ⋅⋅⋅*Fix clearing of data in table. Currently it is unreliable\
+  ⋅⋅⋅*(fixed) Fix clearing of data in table. Currently it is unreliable\
   ⋅⋅⋅*Ability to use enter button to submit\
-  ⋅⋅⋅*Table formatting for submitting data\
-  ⋅⋅⋅*Sort options by First Name, Last Name, Time in etc.\
-  ⋅⋅⋅*Server side database to track information over time\
+  ⋅⋅⋅*(fixed) Table formatting for submitted data\
+  ⋅⋅⋅*(In Progress) Sort options by First Name, Last Name, Time in etc.\
+  ⋅⋅⋅*Server side database to track information over time. Currently downloading data into csv sheets.\

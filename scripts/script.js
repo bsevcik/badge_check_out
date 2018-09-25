@@ -71,14 +71,68 @@ function returnBadge(r) {
             exportToCsv();
 }
 
+
+
+
+
+
+
+/* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown menu if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
 // This sorts checkedInArray alphabetically by name
 document.getElementById("nameButton").addEventListener("click",
-    function nameSort() {
-        checkedInArray.sort();
-        clearTable();
-        displayArray();
+function badgeTypeSort () {
+    
+checkedInArray.sort(compareSecondColumn);
+
+function compareSecondColumn(a, b) {
+    if (a[1] === b[1]) {
+        return 0;
     }
+    else {
+        return (a[1] < b[1]) ? -1 : 1;
+    }
+}
+                                                       clearTable();
+        displayArray();
+}
+        
+    
                                                      )
+
+
+
+
+
+
+
 
 function exportToCsv() {
     var time = new Date();
@@ -101,3 +155,15 @@ function exportToCsv() {
 document.getElementById("exportToCsv").addEventListener("click",
     exportToCsv()                                                    
                                                        );
+
+
+document.getElementById("firstNameSort").addEventListener("click",
+   // This sorts checkedInArray alphabetically by name
+//document.getElementById("nameButton").addEventListener("click",
+    function nameSort() {
+        checkedInArray.sort();
+        clearTable();
+        displayArray();
+    }
+                                                     )                                           
+//                                                       );
