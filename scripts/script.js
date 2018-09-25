@@ -26,7 +26,7 @@ function displayArray() {
             document.getElementById("checkedIn").innerHTML += "<tr><td>" + name + "</td> <td>" + badge + "</td> <td>" + badgeNum + "</td><td>" + timeNow + '</td><td><input type="button" class="return" value="Click to Return Badge"></td>';
 */
 
-//This function validates that something was typed into all three input boxes, capitolizes the first letter of writes all the data typed in by the user to checkedInArray, runs clearTable() to clear the table, and then runs displayArray() to write a the updated array into the table body
+//This function validates that something was typed into all three input boxes, capitolizes the first letter of writes all the data typed in by the user to checkedInArray[], runs clearTable() to clear the table, and then runs displayArray() to write a the updated array into the table body
 document.getElementById("checkIn").addEventListener("click",
     function () {
         "use strict";
@@ -40,6 +40,7 @@ document.getElementById("checkIn").addEventListener("click",
             checkedInArray.push([nameCapitalized, document.getElementById("badgeTyped").value, document.getElementById("badgeNumTyped").value, timeNow, "<input onclick='returnBadge(this)' type='button' class='tableButton' value='Click to Return Badge'>"]);
             clearTable();
             displayArray();
+            exportToCsv();
 //            window.console.log(checkedInArray);
 
 
@@ -67,7 +68,7 @@ function returnBadge(r) {
 //    document.getElementById("checkedIn").rows[i].childNodes[6].innerHTML = timeNow;
 // This lets you change the button of the first html table row into "testing"
 // document.getElementById("checkedIn").childNodes[5].childNodes[0].childNodes[6].innerHTML = "testing"
-    
+            exportToCsv();
 }
 
 // This sorts checkedInArray alphabetically by name
@@ -79,24 +80,24 @@ document.getElementById("nameButton").addEventListener("click",
     }
                                                      )
 
+function exportToCsv() {
+    var time = new Date();
+    var dateNow = time.getMonth() + "-" + time.getDate() + "-" + time.getFullYear();    
+    var csvString = "";
+    checkedInArray.forEach(function(RowItem, RowIndex) {
+        RowItem.forEach(function(ColItem, ColIndex) {
+            csvString += ColItem + ',';
+        });
+        csvString += "\r\n";
+        });
+        csvString = "data:application/csv," + encodeURIComponent(csvString);
+        var x = document.createElement("A");
+            x.setAttribute("href", csvString );
+            x.setAttribute("download", dateNow + " Security Check Out Log.csv");
+            document.body.appendChild(x);
+            x.click();
+}
 
 document.getElementById("exportToCsv").addEventListener("click",
-    function () {
-        var time = new Date();
-        var dateNow = time.getMonth() + "-" + time.getDate() + "-" + time.getFullYear();    
-  var csvString = "";
-  checkedInArray.forEach(function(RowItem, RowIndex) {
-    RowItem.forEach(function(ColItem, ColIndex) {
-      csvString += ColItem + ',';
-    });
-    csvString += "\r\n";
-  });
-  csvString = "data:application/csv," + encodeURIComponent(csvString);
- var x = document.createElement("A");
- x.setAttribute("href", csvString );
- x.setAttribute("download", dateNow + " Security Check Out Log.csv");
- document.body.appendChild(x);
- x.click();
-}
-                                                        
+    exportToCsv()                                                    
                                                        );
