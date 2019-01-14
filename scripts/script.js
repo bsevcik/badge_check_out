@@ -40,14 +40,16 @@ document.getElementById("checkIn").addEventListener("click",
             checkedInArray.push([nameCapitalized, document.getElementById("badgeTyped").value, document.getElementById("badgeNumTyped").value, timeNow, "<input onclick='returnBadge(this)' type='button' class='tableButton' value='Click to Return Badge'>"]);
             clearTable();
             displayArray();
-            exportToCsv();
+//    optionally call the function to export data to Csv. It was annoying so I turned it off.
+//            exportToCsv();
 //            window.console.log(checkedInArray);
 
 
-//This clears the written input forms after the information is written to checkedInArray
+//This clears the written input forms after the information is written to checkedInArray and focuses back on nameTyped at the top of the form
             document.getElementById("nameTyped").value = "";
             document.getElementById("badgeTyped").value = "";
             document.getElementById("badgeNumTyped").value = "";
+            document.getElementById("nameTyped").focus();
         }
         
     }
@@ -68,7 +70,9 @@ function returnBadge(r) {
 //    document.getElementById("checkedIn").rows[i].childNodes[6].innerHTML = timeNow;
 // This lets you change the button of the first html table row into "testing"
 // document.getElementById("checkedIn").childNodes[5].childNodes[0].childNodes[6].innerHTML = "testing"
-            exportToCsv();
+//
+//    optionally call the function to export data to Csv. It was annoying so I turned it off.
+//    exportToCsv();
 }
 
 
@@ -106,28 +110,6 @@ window.onclick = function(event) {
 
 
 
-// This sorts checkedInArray alphabetically by name
-document.getElementById("nameButton").addEventListener("click",
-function badgeTypeSort () {
-    
-checkedInArray.sort(compareSecondColumn);
-
-function compareSecondColumn(a, b) {
-    if (a[1] === b[1]) {
-        return 0;
-    }
-    else {
-        return (a[1] < b[1]) ? -1 : 1;
-    }
-}
-                                                       clearTable();
-        displayArray();
-}
-        
-    
-                                                     )
-
-
 
 
 
@@ -152,13 +134,11 @@ function exportToCsv() {
             x.click();
 }
 
-document.getElementById("exportToCsv").addEventListener("click",
-    exportToCsv()                                                    
-                                                       );
+document.getElementById("exportToCsv").addEventListener("click", exportToCsv);
 
 
-document.getElementById("firstNameSort").addEventListener("click",
-   // This sorts checkedInArray alphabetically by name
+// This sorts checkedInArray alphabetically by First name
+document.getElementById("firstNameSortClick").addEventListener("click",
 //document.getElementById("nameButton").addEventListener("click",
     function nameSort() {
         checkedInArray.sort();
@@ -167,3 +147,59 @@ document.getElementById("firstNameSort").addEventListener("click",
     }
                                                      )                                           
 //                                                       );
+// This sorts checkedInArray alphabetically by Badge Type
+document.getElementById("badgeTypeSortClick").addEventListener("click", function badgeTypeSort () {
+    checkedInArray.sort(compareSecondColumn);
+    function compareSecondColumn(a, b) {
+        if (a[1] === b[1]) {
+            return 0;
+        } else {
+            return (a[1] < b[1]) ? -1 : 1;
+        }
+    }
+        clearTable();
+        displayArray();
+}
+)
+// This sorts checkedInArray alphabetically by Badge Number
+document.getElementById("badgeNumberSortClick").addEventListener("click", function badgeTypeSort () {
+    checkedInArray.sort(compareThirdColumn);
+    function compareThirdColumn(a, b) {
+        if (a[2] === b[2]) {
+            return 0;
+        } else {
+            return (a[2] < b[2]) ? -1 : 1;
+        }
+    }
+        clearTable();
+        displayArray();
+}
+)
+// This sorts checkedInArray in chronological order of when checked out
+document.getElementById("timeCheckedOutSortClick").addEventListener("click", function badgeTypeSort () {
+    checkedInArray.sort(compareFourthColumn);
+    function compareFourthColumn(a, b) {
+        if (a[3] === b[3]) {
+            return 0;
+        } else {
+            return (a[3] < b[3]) ? -1 : 1;
+        }
+    }
+        clearTable();
+        displayArray();
+}
+)
+// This sorts checkedInArray in chronological order of when returned
+document.getElementById("timeReturnedSortClick").addEventListener("click", function badgeTypeSort () {
+    checkedInArray.sort(compareFifthColumn);
+    function compareFifthColumn(a, b) {
+        if (a[4] === b[4]) {
+            return 0;
+        } else {
+            return (a[4] < b[4]) ? -1 : 1;
+        }
+    }
+        clearTable();
+        displayArray();
+}
+)
